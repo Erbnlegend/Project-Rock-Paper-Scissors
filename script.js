@@ -33,44 +33,64 @@ Scissors < Rock
 
 */
 
-// Temp Selection
-let playerSelection = prompt("Enter Rock, Paper or Scissors!");
+// Player Selection
+function initGameSelection() {
+    console.log("Started")
+    let playerWins = 0;
+    let compWins = 0;
+    let computer = "Rock";
+    initSelection();
+// Get player selection and check to ensure it is acceptable
+    function initSelection() { 
+        let playerPrompt = prompt("Enter Rock, Paper or Scissors!");
+        if(playerPrompt == "Rock" || playerPrompt == "Paper" || playerPrompt == "Scissors") {
+            let player = playerPrompt;
+            // Start Game comparaisons (Who wins??)
+            function compareOptions(player, computer) {
+                for (let i = 0; i < 5; i++) {
+                //Check Player Wins
+                if (player === "Rock" && computer === "Scissors") {
+                    playerWins++
+                    console.log(`Player Wins! Player ${playerWins} ${compWins}`)
+                    initSelection()
+                } else if(player === "Paper" && computer === "Rock") {
+                    playerWins++
+                    console.log(`Player Wins! Player ${playerWins} ${compWins}`)
+                    initSelection()
+                } else if(player === "Scissors" && computer === "Paper") {
+                    playerWins++
+                    console.log(`Player Wins! Player ${playerWins} ${compWins}`)
+                    initSelection()
+                // Computer Wins
+                } else if(player === "Rock" && computer === "Paper") {
+                    compWins++
+                    console.log(`Computer Wins! ${playerWins} ${compWins}`)
+                    initSelection()
+                } else if(player ==="Paper" && computer === "Scissors") {
+                    compWins++
+                    console.log(`Computer Wins! ${playerWins} ${compWins}`)
+                    initSelection()
+                } else if(player === "Scissors" && computer === "Rock") {
+                    compWins++
+                    console.log(`Computer Wins! ${playerWins} ${compWins}`)
+                    initSelection()
+                } else if (player === computer) {
+                    console.log(`No Contest! Try again! ${playerWins} ${compWins}`)
+                    initSelection()
+                }
+            }    
+        }
+        compareOptions(player, computer);
+        } else {
+            console.log("Did you not listen?? Re-enter option please!")
+            initSelection()
+        }
     
-let computerSelection = "Rock";
-
-let playerWins = 0;
-let compWins = 0;
-
-// Start Game
-function compareOptions(playerSelection, computerSelection) {
-    for (let i = 0; i < 5; i++) {
-//Check Player Wins
-        if (playerSelection === "Rock" && computerSelection === "Scissors") {
-            playerWins++
-            console.log(`Player Wins! Player ${playerWins} ${compWins}`)
-        } else if(playerSelection === "Paper" && computerSelection === "Rock") {
-            playerWins++
-            console.log(`Player Wins! Player ${playerWins} ${compWins}`)
-        } else if(playerSelection === "Scissors" && computerSelection === "Paper") {
-            playerWins++
-            console.log(`Player Wins! Player ${playerWins} ${compWins}`)
-// Computer Wins
-        } else if(playerSelection === "Rock" && computerSelection === "Paper") {
-            compWins++
-            console.log(`Computer Wins! ${playerWins} ${compWins}`)
-        } else if(playerSelection ==="Paper" && computerSelection === "Scissors") {
-            compWins++
-            console.log(`Computer Wins! ${playerWins} ${compWins}`)
-        } else if(playerSelection === "Scissors" && computerSelection === "Rock") {
-            compWins++
-            console.log(`Computer Wins! ${playerWins} ${compWins}`)
-        } else if (playerSelection === computerSelection)
-            console.log(`No Contest! Try again! ${playerWins} ${compWins}`)
-    }    
-    return
+    }
 }
+initGameSelection();
 
-compareOptions(playerSelection, computerSelection);
+
 
 
 
