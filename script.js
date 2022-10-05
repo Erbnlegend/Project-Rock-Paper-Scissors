@@ -39,53 +39,59 @@ function initGameSelection() {
     let playerWins = 0;
     let compWins = 0;
     let computer = "Rock";
-    initSelection();
 // Get player selection and check to ensure it is acceptable
+    initSelection();
     function initSelection() { 
         let playerPrompt = prompt("Enter Rock, Paper or Scissors!");
         if(playerPrompt == "Rock" || playerPrompt == "Paper" || playerPrompt == "Scissors") {
             let player = playerPrompt;
             // Start Game comparaisons (Who wins??)
             function compareOptions(player, computer) {
-                for (let i = 0; i < 5; i++) {
-                //Check Player Wins
-                if (player === "Rock" && computer === "Scissors") {
-                    playerWins++
-                    console.log(`Player Wins! Player ${playerWins} ${compWins}`)
-                    initSelection()
-                } else if(player === "Paper" && computer === "Rock") {
-                    playerWins++
-                    console.log(`Player Wins! Player ${playerWins} ${compWins}`)
-                    initSelection()
-                } else if(player === "Scissors" && computer === "Paper") {
-                    playerWins++
-                    console.log(`Player Wins! Player ${playerWins} ${compWins}`)
-                    initSelection()
-                // Computer Wins
-                } else if(player === "Rock" && computer === "Paper") {
-                    compWins++
-                    console.log(`Computer Wins! ${playerWins} ${compWins}`)
-                    initSelection()
-                } else if(player ==="Paper" && computer === "Scissors") {
-                    compWins++
-                    console.log(`Computer Wins! ${playerWins} ${compWins}`)
-                    initSelection()
-                } else if(player === "Scissors" && computer === "Rock") {
-                    compWins++
-                    console.log(`Computer Wins! ${playerWins} ${compWins}`)
-                    initSelection()
-                } else if (player === computer) {
-                    console.log(`No Contest! Try again! ${playerWins} ${compWins}`)
-                    initSelection()
-                }
-            }    
-        }
+                    for (let i = 0; i < 5; i++) {
+                    //Check Player Wins
+                    if (player === "Rock" && computer === "Scissors") {
+                        playerWins++
+                        i++
+                        console.log(`Player Wins! Player:${playerWins} Computer:${compWins}`)
+                        initSelection()
+                    } else if(player === "Paper" && computer === "Rock") {
+                        playerWins++
+                        i++
+                        console.log(`Player Wins! Player:${playerWins} Computer:${compWins}`)
+                        initSelection()
+                    } else if(player === "Scissors" && computer === "Paper") {
+                        playerWins++
+                        i++
+                        console.log(`Player Wins! Player:${playerWins} Computer:${compWins}`)
+                        initSelection()
+                    // Computer Wins
+                    } else if(player === "Rock" && computer === "Paper") {
+                        compWins++
+                        i++
+                        console.log(`Computer Wins! Player:${playerWins} Computer:${compWins}`)
+                        initSelection()
+                    } else if(player ==="Paper" && computer === "Scissors") {
+                        compWins++
+                        i++
+                        console.log(`Computer Wins! Player:${playerWins} Computer:${compWins}`)
+                        initSelection()
+                    } else if(player === "Scissors" && computer === "Rock") {
+                        compWins++
+                        i++
+                        console.log(`Computer Wins! Player:${playerWins} Computer:${compWins}`)
+                        initSelection()
+                    // TIE!
+                    } else if (player === computer) {
+                        console.log(`No Contest! Try again! Player:${playerWins} Computer:${compWins}`)
+                        initSelection()
+                    }
+                }    
+            }
         compareOptions(player, computer);
         } else {
             console.log("Did you not listen?? Re-enter option please!")
             initSelection()
-        }
-    
+        }    
     }
 }
 initGameSelection();
