@@ -47,7 +47,7 @@ function initGameSelection() {
     let aTie = false;
     
 // Get player selection and check to ensure it is acceptable
-    for(let i = 0; i < 4; i++) {
+    for(let i = 0; i < 5; i++) {
         let computerOptions = ["rock", "paper", "scissors"];
         // Call for computer to make a choice
         computerDecision(computerOptions.length);
