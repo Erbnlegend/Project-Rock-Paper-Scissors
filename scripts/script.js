@@ -33,10 +33,13 @@ Scissors < Rock
 
 */
 
-// Player Selection
-document.addEventListener("DOMContentLoaded", function(event) { 
+// Make sure Everything Loads (Chrome!)
+window.onload = (event) => { 
+    initGameSelection()
+};
 
-async function initGameSelection() {
+// Player Selection
+function initGameSelection() {
     console.log("Started");
     let playerWins = 0;
     let compWins = 0;
@@ -82,12 +85,8 @@ async function initGameSelection() {
             console.log("Did you not listen?? Re-enter option please!");
             initSelection();
         }
-    }
-}
-
-initGameSelection()
-
-});
+    };
+};
 
 
 
