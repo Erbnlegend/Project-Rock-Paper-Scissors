@@ -44,8 +44,10 @@ function initGameSelection() {
     let playerWins = 0;
     let compWins = 0;
     let computerChoice = "";
+    let aTie = false;
+    
 // Get player selection and check to ensure it is acceptable
-    for(let i = 0; i < 5; i++) {
+    for(let i = 0; i < 4; i++) {
         let computerOptions = ["Rock", "Paper", "Scissors"];
         // Call for computer to make a choice
         computerDecision(computerOptions.length);
@@ -58,48 +60,53 @@ function initGameSelection() {
         // Now We Have a random computer play
         computerDecision(computerOptions.length);
         initSelection();
+        if(aTie === true) {
+            if(i > 0) i--;
+            aTie = false;
         }
-        
-        function initSelection() {
-            let playerPrompt = prompt("Enter Rock, Paper or Scissors!");
-            let playerChoice = playerPrompt.charAt(0).toUpperCase() + playerPrompt.slice(1);
-            console.log(playerChoice)
-            if(playerChoice == "Rock" || playerChoice == "Paper" || playerChoice == "Scissors") {
-                let player = playerChoice;
-                console.log(`Computer chose ${computerChoice}!`);
-                // Start Game comparaisons (Who wins??)
-                function compareSelections(player, computer) {
-                    //Check Player Wins
-                    if (player === "Rock" && computerChoice === "Scissors") {
-                        playerWins++;
-                        console.log(`Player Wins! Player:${playerWins} Computer:${compWins}`);
-                    } else if(player === "Paper" && computerChoice === "Rock") {
-                        playerWins++;
-                        console.log(`Player Wins! Player:${playerWins} Computer:${compWins}`);
-                    } else if(player === "Scissors" && computerChoice === "Paper") {
-                        playerWins++;
-                        console.log(`Player Wins! Player:${playerWins} Computer:${compWins}`);
-                    // Computer Wins
-                    } else if(player === "Rock" && computerChoice === "Paper") {
-                        compWins++;
-                        console.log(`Computer Wins! Player:${playerWins} Computer:${compWins}`);
-                    } else if(player ==="Paper" && computerChoice === "Scissors") {
-                        compWins++;
-                        console.log(`Computer Wins! Player:${playerWins} Computer:${compWins}`);
-                    } else if(player === "Scissors" && computerChoice === "Rock") {
-                        compWins++;
-                        console.log(`Computer Wins! Player:${playerWins} Computer:${compWins}`);
-                    // TIE!
-                    } else if (player === computerChoice) {
-                        console.log(`No Contest! Try again! Player:${playerWins} Computer:${compWins}`);
-                    }
-                }    
-                compareSelections(player, computerChoice)
-            } else {
-                console.log("Did you not listen?? Re-enter option please!");
-                initSelection();
-            }
-        };
+        console.log(`Round ${i}`);
+    }
+    function initSelection() {
+        let playerPrompt = prompt("Enter Rock, Paper or Scissors!");
+        let playerChoice = playerPrompt.charAt(0).toUpperCase() + playerPrompt.slice(1);
+        console.log(playerChoice)
+        if(playerChoice == "Rock" || playerChoice === "Paper" || playerChoice === "Scissors") {
+            let player = playerChoice;
+            console.log(`Computer chose ${computerChoice}!`);
+            // Start Game comparaisons (Who wins??)
+            function compareSelections(player, computer) {
+                //Check Player Wins
+                if (player === "Rock" && computerChoice === "Scissors") {
+                    playerWins++;
+                    console.log(`Player Wins! Player:${playerWins} Computer:${compWins}`);
+                } else if(player === "Paper" && computerChoice === "Rock") {
+                    playerWins++;
+                    console.log(`Player Wins! Player:${playerWins} Computer:${compWins}`);
+                } else if(player === "Scissors" && computerChoice === "Paper") {
+                    playerWins++;
+                    console.log(`Player Wins! Player:${playerWins} Computer:${compWins}`);
+                // Computer Wins
+                } else if(player === "Rock" && computerChoice === "Paper") {
+                    compWins++;
+                    console.log(`Computer Wins! Player:${playerWins} Computer:${compWins}`);
+                } else if(player ==="Paper" && computerChoice === "Scissors") {
+                    compWins++;
+                    console.log(`Computer Wins! Player:${playerWins} Computer:${compWins}`);
+                } else if(player === "Scissors" && computerChoice === "Rock") {
+                    compWins++;
+                    console.log(`Computer Wins! Player:${playerWins} Computer:${compWins}`);
+                // TIE!
+                } else if (player === computerChoice) {
+                    console.log(`No Contest! Try again! Player:${playerWins} Computer:${compWins}`);
+                    aTie = true;
+                }
+            }    
+            compareSelections(player, computerChoice)
+        } else {
+            console.log("Did you not listen?? Re-enter option please!");
+            aTie = true;
+        }
+    };
 };
 
 
