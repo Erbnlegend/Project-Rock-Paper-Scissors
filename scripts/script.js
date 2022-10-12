@@ -36,62 +36,121 @@ Scissors < Rock
 // New Interactive Game
 
 const playerOptions = ["Rock", "Paper", "Scissors"];
+const computerOptions = ["Rock", "Paper", "Scissors"];
 const parentButtons = document.querySelector('.buttons');
+
+// Updated on choice
+const updateRound = document.getElementById('roundCounter');
+const updatePlayerChoice = document.getElementById('player');
+const updateComputerChoice = document.getElementById('computer');
+const updateWinner = document.getElementById('winner');
+const updatePlayerWins = document.getElementById('playerWins');
+const updateComputerWins = document.getElementById('computerWins');
+
 // Init wins and rounds
 let playerWins = 0;
 let compWins = 0;
-let round = 0;
+let round = 1;
 let aTie = false;
+let player = "";
+let computer = "";
+let winner = "";
 
 // Load buttons on page
 
-console.log()
 const buildButtons = () => {
     for(let i = 0; i < playerOptions.length; i++) {
         const createDiv = document.createElement('div');
         createDiv.setAttribute('class', 'button');
-        createDiv.setAttribute('id', [i]);
+        createDiv.setAttribute('id', playerOptions[i]);
         createDiv.textContent = playerOptions[i];
         parentButtons.appendChild(createDiv);
     }
 }
-
 buildButtons()
 
-// This makes the compuer make a choice
-function computerChoice() {
-    let computerOptions = ["rock", "paper", "scissors"];
-        // Computer Makes a choice!
-        function computerDecision(number) {
-            let computerMath = Math.floor(Math.random() * number);
-            return computerChoice = computerOptions[computerMath];
-        };
-        // Now We Have a random computer play
-        computerDecision(computerOptions.length);
+// Build Round on page
+const buildChoices = () => {
+    setTimeout(() => {
+        updateRound.textContent = `Round: ${round}!`;
+        updatePlayerChoice.textContent = `Player Choice: ${player}`;
+        updateComputerChoice.textContent = `Computer Choice: ${computer}`;
+        compareSelections();
+        updatePlayerWins.textContent = `Player Wins: ${playerWins}`;
+        updateComputerWins.textContent = `Computer Wins: ${compWins}`;
+    }, 500);
+}
+
+// Check Selections to find winner
+
+const compareSelections = () => {
+    //Check Player Wins
+    if (player === "Rock" && computer === "Scissors") {
+        playerWins++;
+        winner = "Player";
+        updateWinner.textContent = `${winner} Wins!`;
+        round++;
+
+    } else if(player === "Paper" && computer === "Rock") {
+        playerWins++;
+        winner = "Player";
+        updateWinner.textContent = `${winner} Wins!`;
+        round++;
+
+    } else if(player === "Scissors" && computer === "Paper") {
+        playerWins++;
+        winner = "Player";
+        updateWinner.textContent = `${winner} Wins!`;
+        round++;
+
+    // Computer Wins
+    } else if(player === "Rock" && computer === "Paper") {
+        compWins++;
+        winner = "Computer";
+        updateWinner.textContent = `${winner} Wins!`;
+        round++;
+
+    } else if(player ==="Paper" && computer === "Scissors") {
+        compWins++;
+        winner = "Computer";
+        updateWinner.textContent = `${winner} Wins!`;
+        round++;
+
+    } else if(player === "Scissors" && computer === "Rock") {
+        compWins++;
+        winner = "Computer";
+        updateWinner.textContent = `${winner} Wins!`;
+        round++;
+    // TIE!
+    } else if (player === computer) {
+        winner = "It's a tie!";
+        updateWinner.textContent = winner;
+    } else {
+        updateWinner.textContent = `Oops! Something happened`;
+    }
+}
+
+// This makes the computer make a choice
+const computerDecision = (number) => {
+    let computerMath = Math.floor(Math.random() * number);
+    computer = computerOptions[computerMath];
 }
 
 // Events functions
 
 const clickButton = (e) => {
-    // Computer Makes a choice!
-    let computerOptions = ["rock", "paper", "scissors"];
-    function computerDecision(number) {
-        let computerMath = Math.floor(Math.random() * number);
-        return computerChoice = computerOptions[computerMath];
-    };
-    // Now We Have a random computer play
     computerDecision(computerOptions.length);
-    console.log(e.target.id)
-    console.log(computerChoice)
+    player = e.target.id;
+    buildChoices();
 }
 
 const events = (e) => {
     for(let i = 0; i < playerOptions.length; i++) {
-        const clickedId = document.getElementById(i)
+        const clickedId = document.getElementById(playerOptions[i]);
         clickedId.addEventListener('click', clickButton);
     }
 }
-events()
+events();
 
 
 // Old Console Game
