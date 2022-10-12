@@ -7,9 +7,7 @@ Need to get input (Rock, Paper, Scissors) from AI
 
 Need to get input (Rock, Paper, Scissors) from player
 -Store option
--Needs to be a typed option
 --Has to be an equivalent of rock, paper, scissors
--needs to accept any type of case (case insensitive)
 
 Need to compare the options selected together
 
