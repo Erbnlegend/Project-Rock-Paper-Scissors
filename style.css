@@ -16,32 +16,68 @@ body {
     font-weight: bolder;
 }
 
-.container {
-    width: 75%;
-    margin: 0 auto;
-}
-
-#round, #winner {
-    margin: 0 auto 2em auto;
+#instructions {
     text-align: center;
     font-size: 30px;
     padding: 1em;
     font-weight: bolder;
 }
 
-#choices, #winner {
-    display: flex;
-    justify-content: space-evenly;
-    text-align: center;
-}
-#choices {
-    margin: 0 auto;
+.container {
     width: 75%;
+    margin: 0 auto;
+}
+
+#round, #winner {
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+#round {
+    margin: 2em auto;
+    padding-top: 1em;
+    width: 50%;
+    border: 3px solid #00CDBB;
+    border-radius: 10px;
+}
+
+#roundCounter, #winner {
+    font-size: 36px;
+}
+
+.menuResults {
+    display: flex;
+    justify-content: space-around;
+}
+
+#winner {
+    display: flex;
+    justify-content: space-around;
+    padding: 1em;
+}
+
+#choices {
+    width: 30%;
+    margin: 4em auto;
+    font-size: 24px;
+}
+
+.versus {
+    font-size: 60px;
+    color: #cd2900
+}
+
+.choiceImage {
+    padding: 0 3em;
+    width: 75ps;
+    height: 75px;
 }
 
 .buttons {
     display: flex;
     justify-content: space-evenly;
+    width: 75%;
+    margin: 0 auto;
 }
 
 .button:nth-child(1) {
@@ -56,11 +92,9 @@ body {
 
 .button {
     padding: 1em 4em;
-    margin-bottom: 1em;
-    color: #fff;
-    font-weight: bolder;
-    font-size: 24px;
     border-radius: 10px;
+    max-width: 150px;
+    max-height: 75px;
 }
 
 .button:hover {

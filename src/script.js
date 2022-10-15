@@ -30,6 +30,7 @@ Scissors < Rock
 // Rock Paper Scissors!!!!
 
 const playerOptions = ["Rock", "Paper", "Scissors"];
+const buttonImages = ['src/images/alpine-landscape-rock-rubble-01g-al1.png', 'src/images/paper.png', 'src/images/scissors_01.png']
 const computerOptions = ["Rock", "Paper", "Scissors"];
 const parentButtons = document.querySelector('.buttons');
 
@@ -49,16 +50,20 @@ let aTie = false;
 let player = "";
 let computer = "";
 let winner = "";
+let playerImage = "";
+let computerImage = "";
 
 // Load buttons on page
 
 const buildButtons = () => {
     for(let i = 0; i < playerOptions.length; i++) {
-        const createDiv = document.createElement('div');
-        createDiv.setAttribute('class', 'button');
-        createDiv.setAttribute('id', playerOptions[i]);
-        createDiv.textContent = playerOptions[i];
-        parentButtons.appendChild(createDiv);
+        const createImg = document.createElement('img');
+        createImg.setAttribute('class', 'button');
+        createImg.setAttribute('id', playerOptions[i]);
+        createImg.setAttribute('src', buttonImages[i]);
+        createImg.setAttribute('alt', `${playerOptions[i]}`);
+        // add image based on id
+        parentButtons.appendChild(createImg);
     }
 }
 buildButtons()
@@ -67,8 +72,16 @@ buildButtons()
 const buildChoices = () => {
     setTimeout(() => {
         updateRound.textContent = `Round: ${round}!`;
-        updatePlayerChoice.textContent = `Player Choice: ${player}`;
-        updateComputerChoice.textContent = `Computer Choice: ${computer}`;
+        const loadImagePlayer = document.createElement('img');
+        const loadImageComputer = document.createElement('img');
+        // Load Image for Player Selection
+        loadImagePlayer.setAttribute('src', playerImage);
+        loadImagePlayer.setAttribute('class', 'choiceImage');
+        updatePlayerChoice.appendChild(loadImagePlayer);
+        // Load Image for Computer Selection
+        loadImageComputer.setAttribute('src', computerImage);
+        loadImageComputer.setAttribute('class', 'choiceImage');
+        updateComputerChoice.appendChild(loadImageComputer);
         compareSelections();
         updatePlayerWins.textContent = `Player Wins: ${playerWins}`;
         updateComputerWins.textContent = `Computer Wins: ${compWins}`;
@@ -125,15 +138,26 @@ const compareSelections = () => {
 
 // This makes the computer make a choice
 const computerDecision = (number) => {
+    const remove = updateComputerChoice.childNodes;
+    // Removing always shrinks array so index must always be 0
+    while(remove.length > 0) {
+        remove[0].parentNode.removeChild(remove[0]);
+    }
     let computerMath = Math.floor(Math.random() * number);
     computer = computerOptions[computerMath];
+    computerImage = buttonImages[computerMath]
 }
 
 // Events functions
-
 const clickButton = (e) => {
     computerDecision(computerOptions.length);
-    player = e.target.id;
+    const remove = updatePlayerChoice.childNodes;
+    // Removing always shrinks array so index must always be 0
+    while(remove.length > 0) {
+        remove[0].parentNode.removeChild(remove[0]);
+    }
+    player = e.target.id
+    playerImage = e.target.src;
     buildChoices();
 }
 
